@@ -1,9 +1,10 @@
-
-
-
+var onlineMonitor = echarts.init(document.getElementById('onlineMonitor'));
+var positionMonitor = echarts.init(document.getElementById('positionMonitor'));
+var breedMonitor=echarts.init(document.getElementById('breedMonitor'));
+var designStorage=echarts.init(document.getElementById('designStorage'));
+var grainTemperature=echarts.init(document.getElementById('grainTemperature'));
 //1,监控在线情况
-function onlineMonitor(data){
-    var onlineMonitor = echarts.init(document.getElementById('onlineMonitor'));
+ var onlineMonitorData=(function(){ 
     option = {
         title:{
             show:true,
@@ -16,7 +17,7 @@ function onlineMonitor(data){
                 color:'white',
                 fontWeight: 'normal'
             }
-    },
+        },
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{c}: {b} ({d}%)"
@@ -75,14 +76,14 @@ function onlineMonitor(data){
                 ]
             }
         ]
-    };
+    }
     onlineMonitor.setOption(option);
-}
-onlineMonitor()
+    })()
+
 // 2,监控位置
-function positionMonitor(data){
-    var positionMonitor = echarts.init(document.getElementById('positionMonitor'));
-    position = {
+var positionMonitorData=(function(){
+    
+    option= {
 
         title: {
             left: 'center',
@@ -149,14 +150,12 @@ function positionMonitor(data){
             }
         ]
     };
+    positionMonitor.setOption(option);
+})()
 
-    positionMonitor.setOption(position);
-}
-positionMonitor()
 //3,品种情况
-function breedMonitor(data){
-    var breedMonitor=echarts.init(document.getElementById('breedMonitor'));
-    breed = {
+var breedMonitorData=(function(){   
+    option= {
         title: {
             text: '品种分布',
             x:'5%',
@@ -206,15 +205,13 @@ function breedMonitor(data){
             }
         ]
     };
-    breedMonitor.setOption(breed);
-}
-breedMonitor()
-//储粮情况
-//1设计仓容
-function designStorage(data){
-    var designStorage=echarts.init(document.getElementById('designStorage'));
+    breedMonitor.setOption(option);
+})()
+
+//4,储粮情况
+var designStorageData=(function(){  
     var e=5.52/12.8*100; 
-    var design={
+    var option={
         title:{
             show:true,
             text:'储粮情况',
@@ -226,24 +223,23 @@ function designStorage(data){
                 fontWeight: 'normal'
             }
         },
-        // tooltip: {
-        //     trigger: 'item',
-        //     formatter: "{d}%",
-        //     show:false
-        // },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{d}%",
+            show:true
+        },
         legend: {
             orient: 'vertical',
             x: "left",
             y:'bottom',
-            data:['实际存储5.52吨','设计仓容12.8吨'],
+            data:['实际存储','设计仓容'],
             textStyle: { //图例文字的样式
                 color: '#fff',
                 fontSize: 12,
             },
             
         },
-        series: 
-            {
+        series:{
                 name:'',
                 type:'pie',
                 radius: ['45%', '60%'],
@@ -265,18 +261,23 @@ function designStorage(data){
                     }
                 },
                 data:[
-                    {value:e, name:'实际存储5.52吨',itemStyle: {color: 'rgb(79,190,245)'}},
-                    {value:100-e, name:'设计仓容12.8吨',itemStyle: {color: 'rgb(83,83,83)'}}
+                    {value:e, name:'实际存储',itemStyle: {color: 'rgb(79,190,245)'}},
+                    {value:100-e, name:'设计仓容',itemStyle: {color: 'rgb(83,83,83)'}}
                 ]
-            }
+             }
+    }  
+    designStorage.setOption(option);
+    return function(){
+        var d=JSON.parse(localStorage.getItem("data"));
+        option.series.data=d;
+        designStorage.hideLoading();
+        designStorage.setOption(option);
     }
-    designStorage.setOption(design);
-}
-designStorage()
-//粮温趋势
-function grainTemperature(data){
-    var grainTemperature=echarts.init(document.getElementById('grainTemperature'));
-    Temperature = {
+})()
+
+//5,粮温趋势
+var grainTemperatureData=(function(){
+    option = {
      baseOption: {
         timeline: {
                 autoPlay:true,
@@ -439,6 +440,6 @@ function grainTemperature(data){
     ]
 
     };
-    grainTemperature.setOption(Temperature);
-}
-grainTemperature()
+    grainTemperature.setOption(option);
+})()
+

@@ -22,10 +22,7 @@ $(function() {
                   <div class="font-20">${val.name}</div>
                   <div class="font-number">${l[i]} <i>KG</i></div>
                  
-                  ` 
-                  
-                  
-                        
+                  `                                       
                 }
                 $("#jsonTal").append(temp);  
                 console.log(l[i])
