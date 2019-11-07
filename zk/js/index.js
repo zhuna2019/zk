@@ -443,3 +443,13 @@ var grainTemperatureData=(function(){
     grainTemperature.setOption(option);
 })()
 
+setTimeout(function (){
+    window.onresize = function () {
+        onlineMonitor.resize();
+        positionMonitor.resize();
+        breedMonitor.resize();
+        designStorage.resize();
+        grainTemperature.resize();
+    }
+},200)
+
