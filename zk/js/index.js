@@ -25,10 +25,11 @@ var grainTemperature=echarts.init(document.getElementById('grainTemperature'));
         },
         legend: {
             orient: 'vertical',
-            x: "right",
+            x: "70%",
+            y:"15%",
             data:['在线','离线'],
             textStyle: { //图例文字的样式
-                color: '#fff',
+                color: 'rgb(231, 237, 243)',
                 fontSize: 12,
             },
             
@@ -38,7 +39,7 @@ var grainTemperature=echarts.init(document.getElementById('grainTemperature'));
             {
                 name:'监控在线情况',
                 type:'pie',
-                radius: ['45%', '75%'],
+                radius: ['45%', '70%'],
                 center: ['35%', '50%'],
                 avoidLabelOverlap: false,
                 label: {
@@ -101,8 +102,8 @@ var positionMonitorData=(function(){
             {
                 name:'位置情况',
                 type:'pie',
-                radius : '70%',
-                center: ['50%', '40%'],
+                radius : '60%',
+                center: ['50%', '35%'],
                 data:[
                     {value:553, name:'仓外台数',itemStyle: {color: 'rgb(33,50,93)'}},
                     {value:192, name:'仓内台数',itemStyle: {color: 'rgb(168,51,59)'}}
@@ -112,7 +113,7 @@ var positionMonitorData=(function(){
                 label: {  //饼图图形上的文本标签
                     normal: {
                         textStyle: {
-                            color: 'rgba(255, 255, 255, 0.8)',
+                            color: 'rgb(231, 237, 243)',
                             fontSize:16
                         }
                     }
@@ -156,16 +157,16 @@ var positionMonitorData=(function(){
 //3,品种情况
 var breedMonitorData=(function(){   
     option= {
-        title: {
-            text: '品种分布',
-            x:'5%',
-            y:'5%',
-            textStyle: {
-                fontSize: '20',
-                color:'rgb(81,175,237)',
-                fontWeight: 'normal'
-            },
-        },
+        // title: {
+        //     text: '品种分布',
+        //     x:'5%',
+        //     y:'5%',
+        //     textStyle: {
+        //         fontSize: '20',
+        //         color:'rgb(81,175,237)',
+        //         fontWeight: 'normal'
+        //     },
+        // },
         tooltip : {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -182,7 +183,7 @@ var breedMonitorData=(function(){
                 name: '品种情况',
                 type: 'pie',
                 radius : '60%',
-                center: ['40%', '50%'],
+                center: ['40%', '40%'],
                 data:[
                     {value:335, name:'小麦及混合小麦\n',itemStyle: {color: 'rgb(207,136,32)'}},
                 ],
@@ -199,7 +200,7 @@ var breedMonitorData=(function(){
                             
                         },
                         labelLine:{show:true,
-                        length:10}
+                        length:5}
                     }
                 }
             }
@@ -212,29 +213,28 @@ var breedMonitorData=(function(){
 var designStorageData=(function(){  
     var e=5.52/12.8*100; 
     var option={
-        title:{
-            show:true,
-            text:'储粮情况',
-            x:'5%',
-            y:'5%',
-            textStyle: {
-                fontSize: '20',
-                color:'rgb(81,175,237)',
-                fontWeight: 'normal'
-            }
-        },
+        // title:{
+        //     show:true,
+        //     text:'储粮情况',
+        //     x:'5%',
+        //     y:'5%',
+        //     textStyle: {
+        //         fontSize: '20',
+        //         color:'rgb(81,175,237)',
+        //         fontWeight: 'normal'
+        //     }
+        // },
         tooltip: {
             trigger: 'item',
             formatter: "{d}%",
             show:true
         },
         legend: {
-            orient: 'vertical',
-            x: "left",
-            y:'bottom',
+          
+            x: "55%",
             data:['实际存储','设计仓容'],
             textStyle: { //图例文字的样式
-                color: '#fff',
+                color: 'rgb(231, 237, 243)',
                 fontSize: 12,
             },
             
@@ -242,8 +242,8 @@ var designStorageData=(function(){
         series:{
                 name:'',
                 type:'pie',
-                radius: ['45%', '60%'],
-                center: ['60%', '45%'],
+                radius: ['40%', '60%'],
+                center: ['50%', '60%'],
                 avoidLabelOverlap: true,
                 hoverAnimation:false,
                 label: {
@@ -261,7 +261,7 @@ var designStorageData=(function(){
                     }
                 },
                 data:[
-                    {value:e, name:'实际存储',itemStyle: {color: 'rgb(79,190,245)'}},
+                    {value:e, name:'实际存储',itemStyle: {color:'rgb(209, 83, 10)'}},
                     {value:100-e, name:'设计仓容',itemStyle: {color: 'rgb(83,83,83)'}}
                 ]
              }
@@ -280,11 +280,13 @@ var grainTemperatureData=(function(){
     option = {
      baseOption: {
         timeline: {
+                show:false,
+                playInterval:6000,
                 autoPlay:true,
                 left:'5%',
                 right:"5%",
                 bottom:"0",
-                data: ['2019-01-01', '2019-02-01', '2019-03-01','2019-04-01', '2019-05-01', '2019-06-01']
+                data: ['2002', '2003', '2004','2005', '2006', '2007',]
             },
         title: {
             // text: '粮温情况统计',
@@ -310,7 +312,7 @@ var grainTemperatureData=(function(){
         grid: {
             left: '1%',
             right: '6%',
-            bottom: '30%',
+            bottom: '10%',
             containLabel: true,
            
         },
@@ -324,7 +326,7 @@ var grainTemperatureData=(function(){
                     width: 1, //这里是为了突出显示加上的  
                 }
             },
-            data: ['1号仓','2号仓','3号仓','4号仓','5号仓','6号仓','7号仓'],
+            data: ['2019-11-7','2019-11-8','2019-11-9','2019-11-10','2019-11-11','2019-11-12','2019-11-13'],
             textStyle: {
                 fontSize: '20',
                 color:'red',
@@ -369,74 +371,104 @@ var grainTemperatureData=(function(){
     options: [
         { // 这是'2019-01-01' 对应的 option
             title: {
-                text: '2019-01-01粮温情况统计'
+                text: '1号仓粮温情况统计'
             },
             series: [
-                {data:[30, 52, 40, 54,50, 20, 40],}, // 系列一的数据
-                {data:[20, 32, 30, 24, 40, 50, 30],}, // 系列二的数据
-                {data:[10, 22, 10, 34, 20, 30, 10],},  // 系列三的数据
+                {data:[30, 52, 40, 54,50, 20, 40]}, // 系列一的数据
+                {data:[20, 32, 30, 24, 40, 50, 30]}, // 系列二的数据
+                {data:[10, 22, 10, 34, 20, 30, 10]},  // 系列三的数据
             ]
         },
         { // 这是'2019-02-01' 对应的 option
             title: {
-                text: '2019-02-01粮温情况统计'
+                text: '2号仓粮温情况统计'
             },
             series: [
-                {data:[40, 32, 40, 14, 30, 30, 50],}, // 系列一的数据
-                {data:[30, 42, 30, 34, 40, 60, 30],}, // 系列二的数据
-                {data:[20, 52, 10, 24, 50, 30, 40],},  // 系列三的数据
+                {data:[40, 32, 40, 14, 30, 30, 50]}, // 系列一的数据
+                {data:[30, 42, 30, 34, 40, 60, 30]}, // 系列二的数据
+                {data:[20, 52, 10, 24, 50, 30, 40]},  // 系列三的数据
             ]
         },
         { // 这是'2019-03-01' 对应的 option
             title: {
-                text: '2019-03-01粮温情况统计'
+                text: '3号仓粮温情况统计'
             },
             series: [
-                {data:[40, 32, 10, 34, 30, 50, 20],}, // 系列一的数据
-                {data:[50, 32, 10, 24, 40, 30, 30],}, // 系列二的数据
-                {data:[20, 32, 10, 14, 50, 20, 40],},  // 系列三的数据
+                {data:[40, 32, 10, 34, 30, 50, 20]}, // 系列一的数据
+                {data:[50, 32, 10, 24, 40, 30, 30]}, // 系列二的数据
+                {data:[20, 32, 10, 14, 50, 20, 40]},  // 系列三的数据
             ]
         },
         { // 这是'2019-03-01' 对应的 option
         title: {
-            text: '2019-04-01粮温情况统计'
+            text: '4号仓粮温情况统计'
         },
         series: [
-            {data:[10, 32, 10,14, 50, 30, 50],}, // 系列一的数据
-            {data:[30, 32, 20, 24, 40, 40, 30],}, // 系列二的数据
-            {data:[20, 32, 30, 34, 30, 20, 40],},  // 系列三的数据
+            {data:[10, 32, 10,14, 50, 30, 50]}, // 系列一的数据
+            {data:[30, 32, 20, 24, 40, 40, 30]}, // 系列二的数据
+            {data:[20, 32, 30, 34, 30, 20, 40]},  // 系列三的数据
         ]
        },
        { // 这是'2019-03-01' 对应的 option
        title: {
-           text: '2019-05-01粮温情况统计'
+           text: '5号仓粮温情况统计'
        },
        series: [
-            {data:[30, 42, 20, 34, 50, 30, 60],}, // 系列一的数据
-            {data:[20, 22, 10, 54, 30, 60, 40],}, // 系列二的数据
-            {data:[20, 12, 30, 32, 40, 30, 30],},  // 系列三的数据
+            {data:[30, 42, 20, 34, 50, 30, 60]}, // 系列一的数据
+            {data:[20, 22, 10, 54, 30, 60, 40]}, // 系列二的数据
+            {data:[20, 12, 30, 32, 40, 30, 30]},  // 系列三的数据
        ]
        },
        { // 这是'2019-03-01' 对应的 option
        title: {
-           text: '2019-06-01粮温情况统计'
+           text: '6号仓粮温情况统计'
        },
        series: [
-            {data:[20, 32, 10, 34, 50, 30, 110],}, // 系列一的数据
-            {data:[20, 32, 10, 34, 50, 30, 110],}, // 系列二的数据
-            {data:[20, 32, 20, 34, 50, 30, 110],},  // 系列三的数据
+            {data:[20, 32, 10, 34, 50, 30, 11]}, // 系列一的数据
+            {data:[20, 32, 10, 14, 30, 20, 21]}, // 系列二的数据
+            {data:[20, 32, 20, 38, 50, 40, 31]},  // 系列三的数据
        ]
    },
-   { // 这是'2019-03-01' 对应的 option
+   { 
        title: {
-        text: '2019-07-01粮温情况统计'
+        text: '7号仓粮温情况统计'
        },
        series: [
-            {data:[30, 32, 10, 34, 50, 30, 110],}, // 系列一的数据
-            {data:[20, 32, 50, 34, 50, 30, 110],}, // 系列二的数据
-            {data:[20, 32, 10, 34, 50, 30, 110],},  // 系列三的数据
+            {data:[30, 32, 10, 34, 50, 30, 33]}, // 系列一的数据
+            {data:[20, 32, 50, 14, 30, 40, 43]}, // 系列二的数据
+            {data:[20, 32, 10, 24, 20, 50, 23]},  // 系列三的数据
        ]
-    }
+    },
+    { 
+        title: {
+         text: '8号仓粮温情况统计'
+        },
+        series: [
+             {data:[30, 32, 10, 34, 50, 30, 33]}, // 系列一的数据
+             {data:[20, 32, 50, 14, 30, 40, 43]}, // 系列二的数据
+             {data:[20, 32, 10, 24, 20, 50, 23]},  // 系列三的数据
+        ]
+     },
+     { 
+        title: {
+         text: '9号仓粮温情况统计'
+        },
+        series: [
+             {data:[30, 32, 10, 34, 50, 30, 33]}, // 系列一的数据
+             {data:[20, 32, 50, 14, 30, 40, 43]}, // 系列二的数据
+             {data:[20, 32, 10, 24, 20, 50, 23]},  // 系列三的数据
+        ]
+     },
+     { 
+        title: {
+         text: '10号仓粮温情况统计'
+        },
+        series: [
+             {data:[30, 32, 10, 34, 50, 30, 33]}, // 系列一的数据
+             {data:[20, 32, 50, 14, 30, 40, 43]}, // 系列二的数据
+             {data:[20, 32, 10, 24, 20, 50, 23]},  // 系列三的数据
+        ]
+     }
     ]
 
     };
