@@ -82,10 +82,8 @@ var grainTemperature=echarts.init(document.getElementById('grainTemperature'));
     })()
 
 // 2,监控位置
-var positionMonitorData=(function(){
-    
+var positionMonitorData=(function(){ 
     option= {
-
         title: {
             left: 'center',
             top: 10,
@@ -93,7 +91,6 @@ var positionMonitorData=(function(){
                 color: '#ccc'
             }
         },
-
         tooltip : {
             trigger: 'item',
             formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -105,7 +102,7 @@ var positionMonitorData=(function(){
                 radius : '60%',
                 center: ['50%', '35%'],
                 data:[
-                    {value:553, name:'仓外台数',itemStyle: {color: 'rgb(33,50,93)'}},
+                    {value:553, name:'仓外台数',itemStyle: {color: 'rgb(112,30,193)'}},
                     {value:192, name:'仓内台数',itemStyle: {color: 'rgb(168,51,59)'}}
                     
                 ].sort(function (a, b) { return a.value - b.value; }),
@@ -211,27 +208,29 @@ var breedMonitorData=(function(){
 
 //4,储粮情况
 var designStorageData=(function(){  
-    var e=5.52/12.8*100; 
     var option={
         // title:{
         //     show:true,
-        //     text:'储粮情况',
+        //     trigger: 'item',
+        //     text:'存储比\n',
+        //     formatter: "{d}%",
         //     x:'5%',
         //     y:'5%',
         //     textStyle: {
-        //         fontSize: '20',
+        //         fontSize: '12',
         //         color:'rgb(81,175,237)',
         //         fontWeight: 'normal'
         //     }
         // },
+        
         tooltip: {
             trigger: 'item',
-            formatter: "{d}%",
+            formatter: "{c}吨",
             show:true
         },
         legend: {
-          
-            x: "55%",
+            y:"75%",
+            x: "0%",
             data:['实际存储','设计仓容'],
             textStyle: { //图例文字的样式
                 color: 'rgb(231, 237, 243)',
@@ -239,13 +238,15 @@ var designStorageData=(function(){
             },
             
         },
+     
         series:{
                 name:'',
                 type:'pie',
                 radius: ['40%', '60%'],
-                center: ['50%', '60%'],
+                center: ['50%', '40%'],
                 avoidLabelOverlap: true,
                 hoverAnimation:false,
+               
                 label: {
                     normal: {
                         show: false,
@@ -253,16 +254,12 @@ var designStorageData=(function(){
                     },
                     emphasis: {
                         show: false
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
+                    },
+                   
                 },
                 data:[
-                    {value:e, name:'实际存储',itemStyle: {color:'rgb(209, 83, 10)'}},
-                    {value:100-e, name:'设计仓容',itemStyle: {color: 'rgb(83,83,83)'}}
+                    {value:5.52, name:'实际存储',itemStyle: {color:'rgb(209, 83, 10)'}},
+                    {value:12.5, name:'设计仓容',itemStyle: {color: 'rgb(83,83,83)'}}
                 ]
              }
     }  
@@ -286,7 +283,7 @@ var grainTemperatureData=(function(){
                 left:'5%',
                 right:"5%",
                 bottom:"0",
-                data: ['2002', '2003', '2004','2005', '2006', '2007',]
+                data: ['2002', '2003', '2004','2005', '2006', '2007','2008','2009', '20010', '20011']
             },
         title: {
             // text: '粮温情况统计',
