@@ -67,10 +67,10 @@ body {
 }
 .svg-bg{
     width:100%;
-    height:36%;
+    height:37.5%;
     background:url(../img/border_bg.svg);
     background-size:cover;
-    margin-top:3%;
+    margin-top:3.5%;
     padding:3% 3% 0 3%;
 }
 .svg-md{
@@ -132,7 +132,7 @@ table{
 }
 .temperature{
     width:100%;
-    height:70%;
+    height:75%;
     color:rgb(231, 237, 243);
     text-align: center;
     font-size:12px;

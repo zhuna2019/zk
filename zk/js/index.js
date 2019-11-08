@@ -6,18 +6,18 @@ var grainTemperature=echarts.init(document.getElementById('grainTemperature'));
 //1,监控在线情况
  var onlineMonitorData=(function(){ 
     option = {
-        title:{
-            show:true,
-            text:'在线比:',
-            formatter: "{a} <br/>{c}: {b} ({d}%)",
-            x:'20%',
-            y:'30%',
-            textStyle: {
-                fontSize: '14',
-                color:'white',
-                fontWeight: 'normal'
-            }
-        },
+        // title:{
+        //     show:true,
+        //     text:'在线比:',
+        //     formatter: "{a} <br/>{c}: {b} ({d}%)",
+        //     x:'20%',
+        //     y:'30%',
+        //     textStyle: {
+        //         fontSize: '14',
+        //         color:'white',
+        //         fontWeight: 'normal'
+        //     }
+        // },
         tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{c}: {b} ({d}%)"
