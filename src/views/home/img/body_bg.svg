@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100%" height="100%" viewBox="0 0 302 183" preserveAspectRatio="none meet" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>底框</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="5G网管-首页-全国" transform="translate(-24.000000, -124.000000)" fill-rule="nonzero">
+            <g id="内容">
+                <g id="网络规模-小区数量" transform="translate(24.000000, 124.000000)">
+                    <g id="底框">
+                        <polygon id="路径" fill="#1477FF" opacity="0.01" points="301 5 169.585786 5 165.585786 1 4.98529407 1 1 4.9189125 1 183 294.645572 183 301 176.002553"></polygon>
+                        <path d="M301,5 L169.585786,5 L165.585786,1 L4.98529407,1 L1,4.9189125 L1,182 L294.645572,182 L301,175.002553 L301,5 Z M302,4 L302,175.38885 L295.088264,183 L-2.27373675e-13,183 L-2.27373675e-13,4.49977087 L4.57599147,0 L166,0 L170,4 L302,4 Z" id="形状" fill="#034B8C"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

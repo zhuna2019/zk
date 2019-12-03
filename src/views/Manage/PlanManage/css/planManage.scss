@@ -1,0 +1,23 @@
+.planInput {
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+    margin-top:5px;
+  }
+  .plan {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size:14px;
+  }
+  .planBtn {
+    display: flex;
+    justify-content: center;
+    align-items: cneter;
+    font-size:14px;
+    width: 40%;
+  }
+  .el-tag:hover {
+    background-color: rgba(49, 189, 214, 0.5);
+  }

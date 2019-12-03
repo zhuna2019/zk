@@ -1,0 +1,47 @@
+html, body, #app {
+    height:100%;
+    margin:0;
+    padding:0;
+    font-family: '微软雅黑';
+    font-size:12px !important;
+}
+.el-breadcrumb{
+    padding-bottom:20px;
+}
+.el-input{
+    width:250px !important;
+    height:10px !important;
+    outline: none !important;
+}
+.el-tag + .el-tag {
+    margin-left: 10px;
+}
+.el-scrollbar__wrap
+{
+  overflow-x: hidden;
+}
+.el-scrollbar__thumb {
+    background-color: #b5bedd;
+}
+.el-submenu__title:hover,.el-submenu .el-menu-item:hover{
+    background-color: #034b8c !important;
+    color:#0DC6F5 !important
+    
+  }
+  .el-table{
+      margin-top:15px;
+      font-size:10px;
+  }
+  .el-table .cell{
+    position:relative;
+  }
+  .el-table .caret-wrapper{
+    position:absolute;
+    top:2px;
+    right:0;
+  }
+  .el-table .cell, .el-table th div{
+    padding:0!important;
+    text-align: center;
+  }
+ 

@@ -1,0 +1,25 @@
+{
+    "data": {
+        "ID": 1,
+        "UserCode": "super",
+        "UserSeq": "1",
+        "StaffCode": "0000",
+        "UserName": "超级管理员",
+        "Description": "超级管理员",
+        "Password": null,
+        "RoleName": null,
+        "OrganizeName": null,
+        "ConfigJSON": null,
+        "IsEnable": "1",
+        "LoginCount": 1953,
+        "LastLoginDate": "2019-10-23T09:53:34+08:00",
+        "CreatePerson": "super",
+        "CreateDate": "2017-05-20T11:00:00+08:00",
+        "UpdatePerson": "super",
+        "UpdateDate": "2017-06-07T10:24:09+08:00",
+        "ProjectCode": "91620702057594049A006",
+        "DefaultUrlID": "1701"
+    },
+    "code": 0,
+    "message": "f68e6b614be9442d99b220af21c35db3"
+}
