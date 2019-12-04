@@ -310,6 +310,7 @@ export default {
       // console.log(data)
       // 当没有传过来id的时候,说明是添加,所以发送添加请求
       addPostBarn(data).then(res => {
+        console.log(res)
         if (res.data.code !== 0) {
           return this.$message('请求失败')
         }
@@ -351,8 +352,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.breadcrumb,
-.tag {
+.breadcrumb {
   width: 100%;
   height: 5%;
 }
