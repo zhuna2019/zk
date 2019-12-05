@@ -11,15 +11,11 @@
     </div>
     <div class="container">
       <div class="organization">
-        <div class="title">
-          <i></i>
-          <span>组织架构</span>
-        </div>
         <div class="dropdown-menu">
-          <el-dropdown split-button trigger="click" :hide-on-click="false" type="warning">
+          <el-dropdown split-button trigger="click" :hide-on-click="false">
             <i></i>
-            <span>甘肃区鸿谷粮油储备中心储备库</span>
-            <el-dropdown-menu slot="dropdown">
+            <span>组织架构</span>
+            <el-dropdown-menu slot="dropdown" style="background-color:#034b8c">
               <el-dropdown-item>副主任</el-dropdown-item>
               <el-dropdown-item>综合组长</el-dropdown-item>
               <el-dropdown-item>保管组长</el-dropdown-item>
@@ -119,18 +115,9 @@ export default {
   padding: 2px;
 }
 .organization {
-  width: 270px;
+  width: 170px;
   height: 95%;
   border: 1px solid #034b8c;
-  .title {
-    width: 100%;
-    height: 30px;
-    background-color: #034b8c;
-    line-height: 30px;
-    padding: 3px;
-    color: #fff;
-    font-size: 16px;
-  }
 }
 .content {
   flex: 1;

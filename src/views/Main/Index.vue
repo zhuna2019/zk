@@ -39,15 +39,17 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
+          <div>
+            <theme-picker />
+          </div>
         </div>
       </div>
       <div class="header-nav">
         <!-- 顶部导航区 -->
         <el-menu
           :default-active="activeIndex"
-          class="el-menu-demo"
+          class="demo"
           mode="horizontal"
-          background-color="#034b8c"
           text-color="#0DC6F5"
           active-text-color="#EABF0D"
         >
@@ -150,6 +152,7 @@
 </template>
 <script>
 import { getNavLeftList } from '@/api/admin_nav.js'
+import themePicker from '@/components/ThemePicker/Index.vue'
 export default {
   created() {
     this.init()
@@ -220,6 +223,9 @@ export default {
       // 被激活的url地址
       activUrl: ''
     }
+  },
+  components: {
+    themePicker
   },
   methods: {
     // 点击头部导航切换侧边栏导航信息
@@ -333,19 +339,18 @@ export default {
   .header-nav {
     height: 45%;
     overflow: hidden;
-    .el-menu-demo {
-      width: 100%;
-      // height: 100%;
-      background-color: $light-blue;
+    .demo {
+      // width: 100%;
+      background-color: #034b8c !important;
       .el-menu-item {
-        // height: 100%!important;
         line-height: 40px;
+        background-color: #034b8c !important;
       }
     }
   }
 }
-.middle{
-  height:84%;
+.middle {
+  height: 84%;
 }
 .el-aside {
   background-color: #010d1b;

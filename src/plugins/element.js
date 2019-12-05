@@ -26,7 +26,8 @@ import {
   DropdownMenu,
   DropdownItem,
   Pagination,
-  Dialog
+  Dialog,
+  ColorPicker
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Form)
@@ -53,5 +54,6 @@ Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
 Vue.use(Pagination)
 Vue.use(Dialog)
+Vue.use(ColorPicker)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

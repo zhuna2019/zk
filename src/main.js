@@ -6,6 +6,7 @@ import './plugins/element.js'
 import './assets/fonts/iconfont.css'
 // 导入全局样式表
 import './styles/global.scss'
+import './styles/element-variables.scss'
 import axios from 'axios'
 Vue.prototype.axios = axios
 // 设置基础路径
