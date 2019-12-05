@@ -40,7 +40,7 @@
           <el-button size="mini" round type="primary" plain class="iconfont icon-daoru">重置密码</el-button>
         </div>
         <!-- 表格区域 -->
-        <el-table :data="userList" stripe border highlight-current-row height="550px">
+        <el-table  stripe border highlight-current-row >
           <el-table-column type="index"></el-table-column>
           <el-table-column prop="planId" label="用户编码" sortable></el-table-column>
           <el-table-column prop="ProjectCode" label="员工"></el-table-column>
@@ -99,6 +99,7 @@ export default {
   box-sizing: border-box;
 }
 .sysUser {
+  width:100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

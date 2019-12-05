@@ -17,7 +17,6 @@
         :color="color"
         :key="tag.name"
         :type="tag.type"
-        @click="changeColor(tag)"
       >
         <i :class="tag.iconClass"></i>
         {{tag.name}}

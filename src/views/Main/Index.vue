@@ -39,7 +39,7 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
-          <div>
+          <div>点击换肤
             <theme-picker />
           </div>
         </div>
@@ -50,7 +50,7 @@
           :default-active="activeIndex"
           class="demo"
           mode="horizontal"
-          text-color="#0DC6F5"
+          text-color="#eee"
           active-text-color="#EABF0D"
         >
           <el-menu-item
@@ -75,7 +75,7 @@
         <el-menu
           background-color="#010d1b "
           text-color="#eee"
-          active-text-color="#0DC6F5 "
+          active-text-color="#0DC6F5"
           :collapse="isCollapse"
           :collapse-transition="false"
           router
@@ -279,6 +279,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import '../../styles/variables.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -303,12 +304,12 @@ export default {
     padding: 0 20px;
     color: #fff;
     .header-title {
-      width: 65%;
+      width: 60%;
       line-height: 50px;
       font-size: 25px;
     }
     .header-top-menu {
-      width: 35%;
+      width: 40%;
       display: flex;
       line-height: 50px;
       justify-content: space-between;
@@ -341,16 +342,23 @@ export default {
     overflow: hidden;
     .demo {
       // width: 100%;
-      background-color: #034b8c !important;
+      background-color: $light-blue !important;
       .el-menu-item {
         line-height: 40px;
-        background-color: #034b8c !important;
+        background-color: $light-blue !important;
+      }
+      .el-menu-item:hover{
+        background-color: rgb(2,60,132) !important;
+        color:#0dc6f5!important;
       }
     }
   }
 }
 .middle {
-  height: 84%;
+  height: 84vh;
+  .main{
+    height:100%;
+  }
 }
 .el-aside {
   background-color: #010d1b;
@@ -369,6 +377,7 @@ export default {
   }
 }
 .el-main {
+  height:100%;
   background-color: #eee;
 }
 .footer {
@@ -382,7 +391,10 @@ export default {
 }
 .iconfont {
   margin-right: 5px;
-  color: #0dc6f5;
+  color: #eee;
+}
+.iconfont:hover{
+  color:#0dc6f5;
 }
 .el-scrollbar {
   height: 50vh;

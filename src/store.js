@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from "vuex"
-import variables from '@/styles/element-variables.scss'
+import variables from '@/styles/variables.scss'
 Vue.user(Vuex)
 export default new Vuex.Store({
     state: {

@@ -4,12 +4,12 @@
     :predefine="['#409EFF', '#67C23A', '#E6A23C', '#f5222d', '#11a983', '#13c2c2', '#6959CD', '#434f5d', ]"
     class="theme-picker"
     popper-class="theme-picker-dropdown"
-    title="换肤"
   />
 </template>
 <script>
 const version = require('element-ui/package.json').version // element-ui version from node_modules
-const ORIGINAL_THEME = '#409EFF' // default color
+const ORIGINAL_THEME = '#034b8c' // default color
+
 export default {
   data() {
     return {
@@ -35,7 +35,6 @@ export default {
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
       const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
       // console.log(themeCluster, originalCluster)
-
       const $message = this.$message({
         message: '更换主题中...',
         customClass: 'theme-message',
@@ -43,7 +42,6 @@ export default {
         duration: 0,
         iconClass: 'el-icon-loading'
       })
-
       const getHandler = (variable, id) => {
         return () => {
           const originalCluster = this.getThemeCluster(
@@ -54,13 +52,10 @@ export default {
             originalCluster,
             themeCluster
           )
-
           let styleTag = document.getElementById(id)
-
           if (!styleTag) {
             styleTag = document.createElement('style')
             styleTag.setAttribute('id', id)
-
             // document.head.appendChild(styleTag)
             document
               .getElementsByTagName('style')[0]
@@ -69,7 +64,6 @@ export default {
           styleTag.innerText = newStyle
         }
       }
-
       if (!this.chalk) {
         const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
         await this.getCSSString(url, 'chalk')
@@ -102,7 +96,6 @@ export default {
       $message.close()
     }
   },
-
   methods: {
     updateStyle(style, oldCluster, newCluster) {
       let newStyle = style
@@ -111,7 +104,6 @@ export default {
       })
       return newStyle
     },
-
     getCSSString(url, variable) {
       return new Promise(resolve => {
         const xhr = new XMLHttpRequest()
@@ -125,7 +117,6 @@ export default {
         xhr.send()
       })
     },
-
     getThemeCluster(theme) {
       const tintColor = (color, tint) => {
         let red = parseInt(color.slice(0, 2), 16)
@@ -147,7 +138,6 @@ export default {
           return `#${red}${green}${blue}`
         }
       }
-
       const shadeColor = (color, shade) => {
         let red = parseInt(color.slice(0, 2), 16)
         let green = parseInt(color.slice(2, 4), 16)
