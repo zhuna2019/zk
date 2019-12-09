@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './api/store'
+import store from './store'
 import './plugins/element.js'
 import './assets/fonts/iconfont.css'
 // 导入全局样式表

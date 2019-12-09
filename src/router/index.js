@@ -18,13 +18,13 @@ const routes = [
     component: Main,
     redirect: '/home',
     children: [
-      { path: '/home', component: Home },
-      { path: '/Grain/grain_AnnualPlan/index', component: AnnualPlan },
-      { path: '/Grain/grain_PurchasePlan/index', component: PurchasePlan },
-      { path: '/Grain/grain_SalesPlan/index', component: SalesPlan },
-      { path: '/grain/grain_DeductStandard/Index', component: WeightDeduction },
-      { path: '/sys/sys_BarnInfo/Index', component: sysBarnInfo },
-      { path: '/sys/user', component: sysUser }
+      { path: '/home', component: Home, name: 'home' },
+      { path: '/Grain/grain_AnnualPlan/index', component: AnnualPlan, name: 'AnnualPlan' },
+      { path: '/Grain/grain_PurchasePlan/index', component: PurchasePlan, name: 'PurchasePlan' },
+      { path: '/Grain/grain_SalesPlan/index', component: SalesPlan, name: 'SalesPlan' },
+      { path: '/grain/grain_DeductStandard/Index', component: WeightDeduction, name: 'WeightDeduction' },
+      { path: '/sys/sys_BarnInfo/Index', component: sysBarnInfo, name: 'sysBarnInfo' },
+      { path: '/sys/user', component: sysUser, name: 'sysUser' }
     ]
   }
 ]

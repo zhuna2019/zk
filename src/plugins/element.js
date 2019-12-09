@@ -28,6 +28,8 @@ import {
   Pagination,
   Dialog,
   Tag,
+  Tabs,
+  TabPane,
   ColorPicker
 } from 'element-ui'
 Vue.use(Button)
@@ -57,5 +59,7 @@ Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(ColorPicker)
 Vue.use(Tag)
+Vue.use(Tabs)
+Vue.use(TabPane)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

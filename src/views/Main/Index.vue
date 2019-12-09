@@ -39,7 +39,8 @@
               </el-dropdown-menu>
             </el-dropdown>
           </div>
-          <div>点击换肤
+          <div>
+            点击换肤
             <theme-picker />
           </div>
         </div>
@@ -101,7 +102,7 @@
                 :index="sanItem.URL"
                 v-for="sanItem in subItem.Children"
                 :key="sanItem.MenuCode"
-                @click="saveNavState(sanItem.URL)"
+                @click="saveNavState(sanItem.MenuName,sanItem.URL)"
               >
                 <!-- 图标 -->
                 <i class="el-icon-menu"></i>
@@ -129,7 +130,7 @@
                 :index="sanItem2.URL"
                 v-for="sanItem2 in subItem2.Children"
                 :key="sanItem2.MenuCode"
-                @click="saveNavState(sanItem2.URL)"
+                @click="saveNavState(sanItem2.MenuName,sanItem2.URL)"
               >
                 <!-- 图标 -->
                 <i class="el-icon-menu"></i>
@@ -143,7 +144,12 @@
       <el-container class="main">
         <!-- 右侧内容主体 -->
         <el-main>
-          <router-view></router-view>
+          <div class="tab">
+            <tab />
+          </div>
+          <keep-alive>
+            <router-view />
+          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
@@ -153,13 +159,20 @@
 <script>
 import { getNavLeftList } from '@/api/admin_nav.js'
 import themePicker from '@/components/ThemePicker/Index.vue'
+import tab from '@/components/tabs/Index.vue'
 export default {
   created() {
     this.init()
     this.activUrl = window.sessionStorage.getItem('activUrl')
+    // 刷新页面时（F11)
+    // 因为<router-view>的<keep-alive>，会保留刷新时所在的router
+    // 但是tab标签页因为刷新而被重构了，tab没有了
+    // 因此需要将router回到index
+    this.$router.push('/home')
   },
   data() {
     return {
+      openedTab: [],
       activeIndex: '1',
       isCollapse: false,
       topMenuList: [
@@ -225,7 +238,8 @@ export default {
     }
   },
   components: {
-    themePicker
+    themePicker,
+    tab
   },
   methods: {
     // 点击头部导航切换侧边栏导航信息
@@ -253,9 +267,21 @@ export default {
       this.isCollapse = !this.isCollapse
     },
     // 保存链接的激活状态
-    saveNavState(activUrl) {
+    saveNavState(MenuName, activUrl) {
       window.sessionStorage.setItem('activUrl', activUrl)
       this.activUrl = activUrl
+      this.openedTab = this.$store.state.openedTab
+      this.openedTab.forEach((item, index) => {
+        // 该标签是已经打开过的，需要激活此标签页
+        if (item.title === MenuName) {
+          this.$store.commot('changeTab', MenuName)
+        } else {
+          let tabnum = { title: '', name: '' }
+          tabnum.title = MenuName
+          tabnum.name = activUrl
+          this.$store.commit('addTab', tabnum)
+        }
+      })
     },
     // 数据初始
     init() {
@@ -347,17 +373,29 @@ export default {
         line-height: 40px;
         background-color: $light-blue !important;
       }
-      .el-menu-item:hover{
-        background-color: rgb(2,60,132) !important;
-        color:#0dc6f5!important;
+      .el-menu-item:hover {
+        background-color: rgb(2, 60, 132) !important;
+        color: #0dc6f5 !important;
       }
     }
   }
 }
 .middle {
   height: 84vh;
-  .main{
-    height:100%;
+  .main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .el-main {
+      width: 100%;
+      height: 100%;
+      background-color: #eee;
+      padding: 5px;
+      .tab {
+        width: 100%;
+        height: 7%;
+      }
+    }
   }
 }
 .el-aside {
@@ -376,10 +414,7 @@ export default {
     border-right: none;
   }
 }
-.el-main {
-  height:100%;
-  background-color: #eee;
-}
+
 .footer {
   width: 100%;
   height: 3% !important;
@@ -393,8 +428,8 @@ export default {
   margin-right: 5px;
   color: #eee;
 }
-.iconfont:hover{
-  color:#0dc6f5;
+.iconfont:hover {
+  color: #0dc6f5;
 }
 .el-scrollbar {
   height: 50vh;

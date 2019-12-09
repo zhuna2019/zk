@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- 面包屑导航 -->
-    <div class="breadcrumb">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{path:'/main'}">综合看板</el-breadcrumb-item>
-        <el-breadcrumb-item>经营管理</el-breadcrumb-item>
-        <el-breadcrumb-item>计划管理</el-breadcrumb-item>
-        <el-breadcrumb-item>销售计划</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
     <!-- 标签区域 -->
     <div class="tag">
       <el-tag

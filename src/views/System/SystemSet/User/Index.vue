@@ -1,21 +1,12 @@
 <template>
   <div class="sysUser">
-    <!-- 面包屑导航 -->
-    <div class="breadcrumb">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{path:'/main'}">综合看板</el-breadcrumb-item>
-        <el-breadcrumb-item>系统管理</el-breadcrumb-item>
-        <el-breadcrumb-item>基础系统设置</el-breadcrumb-item>
-        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
-    <div class="container">
+    <div class="containers">
       <div class="organization">
-        <div class="dropdown-menu">
+        <div class="dropdown-menu user">
           <el-dropdown split-button trigger="click" :hide-on-click="false">
             <i></i>
             <span>组织架构</span>
-            <el-dropdown-menu slot="dropdown" style="background-color:#034b8c">
+            <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>副主任</el-dropdown-item>
               <el-dropdown-item>综合组长</el-dropdown-item>
               <el-dropdown-item>保管组长</el-dropdown-item>
@@ -40,7 +31,7 @@
           <el-button size="mini" round type="primary" plain class="iconfont icon-daoru">重置密码</el-button>
         </div>
         <!-- 表格区域 -->
-        <el-table  stripe border highlight-current-row >
+        <el-table stripe border highlight-current-row>
           <el-table-column type="index"></el-table-column>
           <el-table-column prop="planId" label="用户编码" sortable></el-table-column>
           <el-table-column prop="ProjectCode" label="员工"></el-table-column>
@@ -93,53 +84,58 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/styles/variables.scss';
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 .sysUser {
-  width:100%;
+  width: 100%;
+  height: 78vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.breadcrumb > .el-breadcrumb {
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-}
-.container {
-  width: 100%;
-  height: 75vh;
-  display: flex;
-  padding: 2px;
-}
-.organization {
-  width: 170px;
-  height: 95%;
-  border: 1px solid #034b8c;
-}
-.content {
-  flex: 1;
-  height: 100%;
-  padding: 3px;
-  border: 1px solid #034b8c;
-  margin-left: 5px;
-  .sort {
-    margin: 5px 0 0 5px;
+  .containers {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .organization {
+      width: 130px;
+      height: 95%;
+      border: 1px solid #034b8c;
+    }
+    .content {
+      flex: 1;
+      height: 100%;
+      padding: 3px;
+      border: 1px solid #034b8c;
+      margin-left: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .sort {
+        width: 100%;
+        height: 5%;
+        margin: 5px 0 0 5px;
+      }
+      .el-table {
+        width: 100%;
+        height: 88%;
+      }
+      .el-pagination {
+        width: 100%;
+        height: 7%;
+      }
+    }
   }
-}
-.el-table {
-  width: 100%;
-  height: 85%;
 }
 .pagination {
   width: 100%;
   height: 5%;
 }
 .el-dropdown-menu {
-  width: 150px;
+  width: 120px;
   background-color: #eee;
 }
 </style>
