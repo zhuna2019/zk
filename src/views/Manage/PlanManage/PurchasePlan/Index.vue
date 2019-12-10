@@ -17,12 +17,12 @@
     <!-- 查询区域 -->
     <div class="planInput">
       <div class="plan">
-        <div>采购计划编号</div>
-        <div>
+        <div class="span">采购计划编号</div>
+        <div class="input">
           <el-input v-model="input" clearable></el-input>
         </div>
-        <div>采购年度</div>
-        <div>
+        <div class="span">采购年度</div>
+        <div class="input">
           <el-date-picker v-model="value" type="year" placeholder="选择年"></el-date-picker>
         </div>
       </div>

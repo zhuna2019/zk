@@ -168,7 +168,6 @@ export default {
     // 因为<router-view>的<keep-alive>，会保留刷新时所在的router
     // 但是tab标签页因为刷新而被重构了，tab没有了
     // 因此需要将router回到index
-    this.$router.push('/home')
   },
   data() {
     return {
@@ -271,17 +270,25 @@ export default {
       window.sessionStorage.setItem('activUrl', activUrl)
       this.activUrl = activUrl
       this.openedTab = this.$store.state.openedTab
-      this.openedTab.forEach((item, index) => {
-        // 该标签是已经打开过的，需要激活此标签页
-        if (item.title === MenuName) {
-          this.$store.commot('changeTab', MenuName)
-        } else {
-          let tabnum = { title: '', name: '' }
-          tabnum.title = MenuName
-          tabnum.name = activUrl
-          this.$store.commit('addTab', tabnum)
+      for (var i = 0; i < this.openedTab.length; i++) {
+        if (this.openedTab[i].title === MenuName) {
+          this.$store.commit('changeTab', activUrl)
+          return
         }
-      })
+      }
+      // this.openedTab.forEach((item, index) => {
+      //   // 该标签是已经打开过的，需要激活此标签页
+      //   if (item.title === MenuName) {
+      //     this.$store.commit('changeTab', MenuName)
+      //     return
+      //   }
+      // })
+      // 标签未打开的，添加
+      let tabnum = { title: '', name: '', content: '', labelContent: '' }
+      tabnum.title = MenuName
+      tabnum.name = activUrl
+      tabnum.content = MenuName
+      this.$store.commit('addTab', tabnum)
     },
     // 数据初始
     init() {
@@ -390,7 +397,7 @@ export default {
       width: 100%;
       height: 100%;
       background-color: #eee;
-      padding: 5px;
+      padding: 2px;
       .tab {
         width: 100%;
         height: 7%;

@@ -10,7 +10,8 @@ const store = new Vuex.Store({
         openedTab: [
             {
                 title: '粮情综合看版',
-                name: 'home'
+                name: '/home',
+                content: '粮情综合看版'
             }
         ],
         activeTab: ''

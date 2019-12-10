@@ -45,3 +45,23 @@ html, body, #app {
     background-color:#034b8c !important;
     color:#eee;
   }
+  .el-tabs__nav-scroll{
+    background-color: #012044;
+  }
+  .el-tabs__item.is-active {
+    color:#0DC6F5!important;
+  }
+  .el-tabs__item{
+    color:#eee !important;
+    border:1px solid #034b8c !important;
+    // border-radius:15px;
+    margin-right:6px;
+  }
+  .el-tabs__item:hover {
+    background-color:#034b8c;
+    color: #0DC6F5 !important;
+    cursor: pointer;
+}
+.el-tabs__nav{
+  float:none!important;
+}

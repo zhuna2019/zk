@@ -25,4 +25,12 @@ $sideBarWidth: 210px;
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
   theme: $blue;
+  menuText: $sideMenuText;
+  menuActiveText: $sideMenuActiveText;
+  subMenuActiveText: $sideSubMenuActiveText;
+  menuBg: $sideMenuBg;
+  menuHover: $sideMenuHover;
+  subMenuBg: $sideSubMenuBg;
+  subMenuHover: $sideSubMenuHover;
+  sideBarWidth: $sideBarWidth;
 }

@@ -18,7 +18,7 @@ const routes = [
     component: Main,
     redirect: '/home',
     children: [
-      { path: '/home', component: Home, name: 'home' },
+      { path: '/home', component: Home },
       { path: '/Grain/grain_AnnualPlan/index', component: AnnualPlan, name: 'AnnualPlan' },
       { path: '/Grain/grain_PurchasePlan/index', component: PurchasePlan, name: 'PurchasePlan' },
       { path: '/Grain/grain_SalesPlan/index', component: SalesPlan, name: 'SalesPlan' },

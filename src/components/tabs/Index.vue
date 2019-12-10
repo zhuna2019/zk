@@ -4,7 +4,7 @@
     type="card"
     closable
     @tab-remove="removeTab"
-    @tab-click="handleClickTab($event.name)"
+    @tab-click="handleClickTab($event)"
   >
     <el-tab-pane
       v-for="item in editableTabs"
@@ -15,30 +15,32 @@
   </el-tabs>
 </template>
 <script>
+import variables from '@/styles/variables.scss'
 export default {
   data() {
     return {
-      editableTabsValue: '粮情综合看版',
+      editableTabsValue: '/home',
       editableTabs: [
         {
           title: '粮情综合看版',
-          name: 'home'
+          name: '/home',
+          content: '粮情综合看版'
         }
       ],
       tabIndex: 1,
       openedTab: [
         {
           title: '粮情综合看版',
-          name: 'home'
+          name: '/home',
+          content: '粮情综合看版'
         }
       ]
     }
   },
   methods: {
     handleClickTab(route) {
-      console.log(route)
-      this.$store.commit('changeTab', route)
-      this.$router.push(route)
+      this.$store.commit('changeTab', route.label)
+      this.$router.push(route.name)
     },
     removeTab(targetName) {
       let tabs = this.editableTabs
@@ -56,16 +58,23 @@ export default {
       this.$store.commit('deductTab', targetName)
       let deductIndex = this.openedTab.indexOf(targetName)
       this.openedTab.splice(deductIndex, 1)
-      this.$router.push(activeName)
+      // this.$router.push(activeName)
       this.editableTabsValue = activeName
       this.editableTabs = tabs.filter(tab => tab.name !== targetName)
       if (this.openedTab.length === 0) {
-        this.$store.commit('addTab', 'index')
-        this.$router.push('index')
+        this.$store.commit('addTab', {
+          title: '粮情综合看版',
+          name: '/home',
+          content: '粮情综合看版'
+        })
+        this.$router.push('/home')
       }
     }
   },
   computed: {
+    variables() {
+      return variables
+    },
     getOpenedTab() {
       return this.$store.state.openedTab
     },
@@ -86,9 +95,9 @@ export default {
         this.editableTabs.push({
           title: newTab.title,
           name: newTab.name,
-          content: ''
+          content: newTab.content
         })
-        this.editableTabsValue = newTab.title
+        this.editableTabsValue = newTab.name
         this.openedTab.push(newTab)
       }
     },
@@ -105,7 +114,7 @@ export default {
     // 但是tab标签页因为刷新而被重构了，tab没有了
     // 因此需要将router回到index
     this.$router.push('/home')
-     this.activUrl = window.sessionStorage.getItem('activUrl')
+    this.activUrl = window.sessionStorage.getItem('activUrl')
   }
 }
 </script>
