@@ -74,7 +74,7 @@
         <div class="toggle-button" @click="toggleCollpase">|||</div>
         <!-- 侧边栏菜单区 -->
         <el-menu
-          background-color="#010d1b "
+          background-color="#012044"
           text-color="#eee"
           active-text-color="#0DC6F5"
           :collapse="isCollapse"
@@ -90,7 +90,7 @@
             :key="subItem.MenuCode"
           >
             <!-- 一级菜单的模板区 -->
-            <template slot="title" fixed>
+            <template class="template" slot="title" fixed>
               <!-- 图标 -->
               <i class="el-icon-location"></i>
               <!-- 文本 -->
@@ -406,10 +406,10 @@ export default {
   }
 }
 .el-aside {
-  background-color: #010d1b;
+  background-color: #012044!important;
   color: #f5f7f9;
   .toggle-button {
-    background-color: #4a5064;
+    background-color: #b8babd;
     font: 10px '微软雅黑';
     line-height: 24px;
     color: #fff;
@@ -419,6 +419,13 @@ export default {
   }
   .el-menu {
     border-right: none;
+    background-color: #012044!important;
+    .el-submenu>{
+      background-color: #012044!important;
+      .el-menu-item {
+        background-color: #012044!important;
+      }
+    }
   }
 }
 
@@ -426,7 +433,7 @@ export default {
   width: 100%;
   height: 3% !important;
   line-height: 20px;
-  background-color: #010d1b;
+  background-color: #012044;
   text-align: center;
   font: 12px '微软雅黑';
   color: #eee;

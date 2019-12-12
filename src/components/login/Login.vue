@@ -37,7 +37,7 @@
   </div>
 </template>
 <script>
-import { login } from '@/api/admin_nav.js'
+import { login } from '@/api/login.js'
 export default {
   data() {
     return {

@@ -9,6 +9,7 @@ import SalesPlan from '../views/Manage/PlanManage/SalesPlan/Index.vue'
 import WeightDeduction from '../views/System/BasicSet/WeightDeduction/Index.vue'
 import sysBarnInfo from '../views/System/BasicSet/sysBarnInfo/Index.vue'
 import sysUser from '../views/System/SystemSet/User/Index.vue'
+import sysRole from '../views/System/SystemSet/Role/Index.vue'
 Vue.use(VueRouter)
 const routes = [
   { path: '/' },
@@ -24,7 +25,8 @@ const routes = [
       { path: '/Grain/grain_SalesPlan/index', component: SalesPlan, name: 'SalesPlan' },
       { path: '/grain/grain_DeductStandard/Index', component: WeightDeduction, name: 'WeightDeduction' },
       { path: '/sys/sys_BarnInfo/Index', component: sysBarnInfo, name: 'sysBarnInfo' },
-      { path: '/sys/user', component: sysUser, name: 'sysUser' }
+      { path: '/sys/user', component: sysUser, name: 'sysUser' },
+      { path: '/sys/role', component: sysRole, name: 'sysRole' }
     ]
   }
 ]

@@ -1,14 +1,5 @@
 <template>
   <div class="sysBarnInfo">
-    <!-- 面包屑导航 -->
-    <div class="breadcrumb">
-      <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :to="{path:'/main'}">综合看板</el-breadcrumb-item>
-        <el-breadcrumb-item>系统管理</el-breadcrumb-item>
-        <el-breadcrumb-item>基础设置</el-breadcrumb-item>
-        <el-breadcrumb-item>仓房信息</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
     <!-- 操作区 -->
     <div class="sort">
       <el-button
@@ -347,26 +338,27 @@ export default {
 </script>
 <style lang="scss" scoped>
 .sysBarnInfo {
-  height: 100%;
+  height: 93%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-.breadcrumb {
-  width: 100%;
-  height: 5%;
-}
-.el-button {
-  font-size: 12px !important;
-  border: none;
-}
-.el-button:hover {
-  background-color: #0dc6f5;
-  color: #000;
+  .sort {
+    width: 100%;
+    height: 5%;
+    padding: 10px;
+    .el-button {
+      font-size: 12px !important;
+      border: none;
+    }
+    .el-button:hover {
+      background-color: #0dc6f5;
+      color: #000;
+    }
+  }
 }
 .el-table {
   width: 100%;
-  height: 85%;
+  height: 90%;
 }
 .pagination {
   width: 100%;

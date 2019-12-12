@@ -92,7 +92,7 @@ export default {
 }
 .sysUser {
   width: 100%;
-  height: 78vh;
+  height: 77vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

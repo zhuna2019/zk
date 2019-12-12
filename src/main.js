@@ -14,9 +14,6 @@ Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 Vue.prototype.axios = axios
-// 设置基础路径
-// axios.defaults.baseURL = ''
-axios.defaults.baseURL = '/api'
 Vue.config.productionTip = false
 new Vue({
   router,

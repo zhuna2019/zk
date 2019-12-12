@@ -3,7 +3,7 @@ import qs from 'qs'
 import store from './store'
 
 const Axios = axios.create({
-  baseURL: '/api',
+  baseURL: '',
   withCredentials: true
 })
 Axios.interceptors.request.use(
