@@ -35,47 +35,48 @@
     <!-- 编辑权限对话框 -->
     <el-dialog title="角色授限" :visible.sync="editRoleDialogVisible" width="50%">
       <el-tabs type="border-card">
+        <!-- 菜单权限 -->
         <el-tab-pane>
           <span slot="label">菜单权限</span>
-          <div class="role_content">
-            <div class="top" :model="editRoleForm">
-              <div class="avatar">
-                <img src="../../../../assets/avatar.png" alt />
-              </div>
-              <div class="RoleName">{{editRoleForm.RoleName}}</div>
-              <div class="Description">{{editRoleForm.Description}}</div>
-            </div>
-            <div class="middle">
-              <el-table
-                :data="menuRoleData"
-                row-key="MenuCode"
-                default-expand-all
-                height="500px"
-                border
-                style="width: 100%"
-                :tree-props="{children: 'Children', hasChildren: 'hasChildren'}"
-              >
-                <el-table-column type="index"></el-table-column>
-                <el-table-column width="80">
-                  <template slot-scope="scope">
-                    <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="MenuName" label="菜单" width="150">
-                  <template slot-scope="scope">
-                    <i :class="scope.row.IconClass"></i>
-                    <span style="margin-left: 10px">{{ scope.row.MenuName }}</span>
-                  </template>
-                </el-table-column>
-                <el-table-column prop="MenuCode" label="编码" width="100"></el-table-column>
-                <el-table-column label="备注说明" width="200"></el-table-column>
-              </el-table>
-            </div>
-          </div>
+          <!-- 菜单权限的子组件 -->
+          <menu-limit ref="getCardId" />
         </el-tab-pane>
+        <!-- 按钮权限 -->
         <el-tab-pane>
           <span slot="label">按钮权限</span>
-          我的行程
+          <el-table
+            :data="menuRoleData"
+            style="width: 100%"
+            height="500px"
+            row-key="MenuCode"
+            default-expand-all
+            border
+          >
+            <el-table-column type="index"></el-table-column>
+            <el-table-column fixed prop="MenuName" label="菜单" width="150">
+              <template slot-scope="scope">
+                <i :class="scope.row.IconClass"></i>
+                <span style="margin-left: 10px">{{ scope.row.MenuName }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column fixed prop="name" label="全选" width="70">
+              <template slot="header">
+                <el-checkbox>全选</el-checkbox>
+              </template>
+              <template slot-scope="scope">
+                <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
+              </template>
+            </el-table-column>
+            <el-table-column width="55" v-for="(item,i) in headData" :key="i">
+              <template slot="header">
+                <i class></i>
+                <span>{{item}}</span>
+              </template>
+              <template slot-scope="scope">
+                <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
+              </template>
+            </el-table-column>
+          </el-table>
         </el-tab-pane>
       </el-tabs>
       <span slot="footer" class="dialog-footer">
@@ -86,33 +87,44 @@
   </div>
 </template>
 <script>
-import { getRoles, getRole, getAllMenu } from '@/api/role.js'
+import { getRoles } from '@/api/role.js'
+import MenuLimit from './component/MenuLimit'
 export default {
+  components: {
+    MenuLimit
+  },
   data() {
     return {
       roleList: [],
       editRoleDialogVisible: false,
-      editRoleForm: [],
-      menuRoleData: []
+      headData: [
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增',
+        '新增'
+      ]
     }
   },
   created() {
     this.init()
   },
   methods: {
-    async showEditRoleDialog(id) {
+    showEditRoleDialog(id) {
       this.editRoleDialogVisible = true
-      const { data: res } = await getRole(id)
-      if (res.code !== 0) {
-        return this.$message.error('角色信息查询失败')
-      }
-      this.editRoleForm = res.data
-      const { data: result } = await getAllMenu()
-      if (result.code !== 0) {
-        return this.$message.error('角色信息查询失败')
-      }
-      this.menuRoleData = result.data
-      console.log(result)
+      // 在这里做初始化后就立马执行了下一句调用子组件的方法,可能他还没有初始化完成,所以出现了undefined的异常,稍作了一下延时处理
+      setTimeout(() => {
+        this.$refs.getCardId.accept(id)
+      }, 0)
     },
     init() {
       getRoles().then(res => {
@@ -160,7 +172,7 @@ export default {
 .middle {
   height: 410px;
 }
-.el-tabs{
-  padding:5px;
+.el-tabs {
+  padding: 5px;
 }
 </style>

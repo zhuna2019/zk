@@ -30,9 +30,11 @@ import {
   Tag,
   Tabs,
   TabPane,
+  Tree,
   ColorPicker,
   Tooltip,
-  Avatar
+  Avatar,
+  Loading
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Form)
@@ -65,5 +67,7 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Tooltip)
 Vue.use(Avatar)
+Vue.use(Tree)
+Vue.use(Loading)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

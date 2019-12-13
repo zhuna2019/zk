@@ -1,24 +1,31 @@
 <template>
   <div class="role_content">
     <div class="top" :model="editRoleForm">
-      <!-- <div class="avatar">
-        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-      </div> -->
+      <div class="avatar">
+        <img src="../../../../../assets/avatar.png" alt />
+      </div>
       <div class="RoleName">{{editRoleForm.RoleName}}</div>
       <div class="Description">{{editRoleForm.Description}}</div>
     </div>
     <div class="middle">
       <el-table
+        v-loading="loading"
+        element-loading-text="拼命加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
         :data="menuRoleData"
         row-key="MenuCode"
         default-expand-all
-        height="350"
+        height="500px"
         border
         style="width: 100%"
         :tree-props="{children: 'Children', hasChildren: 'hasChildren'}"
       >
         <el-table-column type="index"></el-table-column>
         <el-table-column width="80">
+          <template slot="header">
+            <el-checkbox></el-checkbox>
+          </template>
           <template slot-scope="scope">
             <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
           </template>
@@ -41,28 +48,25 @@ export default {
   data() {
     return {
       editRoleForm: [],
-      menuRoleData: []
+      menuRoleData: [],
+      loading: true
     }
   },
-  props: ['id'],
-  created() {
-    this.init()
-  },
   methods: {
-    init() {
-      getRole(this.id).then(res => {
-        console.log(res)
+    accept(id) {
+      getRole(id).then(res => {
         if (res.data.code !== 0) {
           return this.$message.error('角色信息查询失败')
         }
         this.editRoleForm = res.data.data
+        this.loading = false
       })
-      getAllMenu(this.id).then(result => {
+      getAllMenu(id).then(result => {
         if (result.data.code !== 0) {
           return this.$message.error('菜单列表查询失败')
         }
         this.menuRoleData = result.data.data
-        console.log(result)
+        this.loading = false
       })
     }
   }
@@ -70,24 +74,34 @@ export default {
 </script>
 <style lang="scss" scoped>
 .role_content {
-  height: 100%;
-  border: 1px solid #eee;
-  padding: 3px;
+  height: 460px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  .top {
-    height: 5%;
-    display: flex;
-    line-height: 44px;
-    .RoleName {
-      margin: 0 20px;
-      font-size: 20px;
-      font-weight: bolder;
+}
+.top {
+  height: 50px;
+  display: flex;
+  line-height: 50px;
+  .avatar {
+    width: 50px;
+    height: 50px;
+    img {
+      width: 50px;
+      height: 50px;
     }
   }
-  .middle {
-    height: 80%;
+  .RoleName {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bolder;
   }
+}
+.middle {
+  height: 410px;
+}
+.el-tabs {
+  padding: 5px;
 }
 </style>
