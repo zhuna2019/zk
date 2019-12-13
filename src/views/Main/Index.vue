@@ -345,7 +345,7 @@ export default {
       width: 40%;
       display: flex;
       line-height: 50px;
-      justify-content: space-between;
+      justify-content: space-around;
       font-size: 12px;
       overflow: hidden;
       .el-dropdown {

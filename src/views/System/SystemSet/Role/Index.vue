@@ -10,42 +10,28 @@
       <el-button size="mini" round type="primary" plain class="iconfont icon-daoru">重置密码</el-button>
     </div>
     <!-- 表格区域 -->
-    <div class="table">
-      <el-table :data="roleList" border stripe height="100%">
-        <el-table-column type="index"></el-table-column>
-        <el-table-column prop="RoleName" label="角色名称" width="150"></el-table-column>
-        <el-table-column prop="RoleCode" label="角色编码" width="150" sortable></el-table-column>
-        <el-table-column prop="RoleSeq" label="排序" width="100" sortable></el-table-column>
-        <el-table-column prop="Description" label="描述" width="180"></el-table-column>
-        <el-table-column label="操作" width="280">
-          <template slot-scope="scope">
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="编辑权限"
-              placement="top"
-              :enterable="false"
-            >
-              <el-button
-                type="primary"
-                icon="el-icon-edit"
-                size="mini"
-                @click="showEditRoleDialog(scope.row.RoleCode)"
-              ></el-button>
-            </el-tooltip>
-            <el-tooltip
-              class="item"
-              effect="dark"
-              content="管理成员"
-              placement="top"
-              :enterable="false"
-            >
-              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
-            </el-tooltip>
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+    <el-table :data="roleList" border stripe height="90%">
+      <el-table-column type="index"></el-table-column>
+      <el-table-column prop="RoleName" label="角色名称" width="150"></el-table-column>
+      <el-table-column prop="RoleCode" label="角色编码" width="150" sortable></el-table-column>
+      <el-table-column prop="RoleSeq" label="排序" width="100" sortable></el-table-column>
+      <el-table-column prop="Description" label="描述" width="180"></el-table-column>
+      <el-table-column label="操作" width="280">
+        <template slot-scope="scope">
+          <el-tooltip class="item" effect="dark" content="编辑权限" placement="top" :enterable="false">
+            <el-button
+              type="primary"
+              icon="el-icon-edit"
+              size="mini"
+              @click="showEditRoleDialog(scope.row.RoleCode)"
+            ></el-button>
+          </el-tooltip>
+          <el-tooltip class="item" effect="dark" content="管理成员" placement="top" :enterable="false">
+            <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+          </el-tooltip>
+        </template>
+      </el-table-column>
+    </el-table>
     <!-- 编辑权限对话框 -->
     <el-dialog title="角色授限" :visible.sync="editRoleDialogVisible" width="50%">
       <el-tabs type="border-card">
@@ -54,9 +40,7 @@
           <div class="role_content">
             <div class="top" :model="editRoleForm">
               <div class="avatar">
-                <el-avatar
-                  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-                ></el-avatar>
+                <img src="../../../../assets/avatar.png" alt />
               </div>
               <div class="RoleName">{{editRoleForm.RoleName}}</div>
               <div class="Description">{{editRoleForm.Description}}</div>
@@ -66,7 +50,7 @@
                 :data="menuRoleData"
                 row-key="MenuCode"
                 default-expand-all
-                height="350"
+                height="500px"
                 border
                 style="width: 100%"
                 :tree-props="{children: 'Children', hasChildren: 'hasChildren'}"
@@ -118,16 +102,14 @@ export default {
   methods: {
     async showEditRoleDialog(id) {
       this.editRoleDialogVisible = true
-      // 根据用户编号查询角色信息
       const { data: res } = await getRole(id)
       if (res.code !== 0) {
         return this.$message.error('角色信息查询失败')
       }
       this.editRoleForm = res.data
-      // 查询所有菜单列表
       const { data: result } = await getAllMenu()
       if (result.code !== 0) {
-        return this.$message.error('菜单列表查询失败')
+        return this.$message.error('角色信息查询失败')
       }
       this.menuRoleData = result.data
       console.log(result)
@@ -149,30 +131,36 @@ export default {
     width: 100%;
     height: 5%;
   }
-  .table{
-    width: 100%;
-    height: 90%;
-  }
 }
 .role_content {
-  height: 100%;
-  border: 1px solid #eee;
-  padding: 3px;
+  height: 460px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  .top {
-    height: 5%;
-    display: flex;
-    line-height: 44px;
-    .RoleName {
-      margin: 0 20px;
-      font-size: 20px;
-      font-weight: bolder;
+}
+.top {
+  height: 50px;
+  display: flex;
+  line-height: 50px;
+  .avatar {
+    width: 50px;
+    height: 50px;
+    img {
+      width: 50px;
+      height: 50px;
     }
   }
-  .middle {
-    height: 80%;
+  .RoleName {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bolder;
   }
+}
+.middle {
+  height: 410px;
+}
+.el-tabs{
+  padding:5px;
 }
 </style>
