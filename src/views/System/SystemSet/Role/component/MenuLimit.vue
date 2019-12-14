@@ -1,12 +1,5 @@
 <template>
   <div class="role_content">
-    <div class="top" :model="editRoleForm">
-      <div class="avatar">
-        <img src="../../../../../assets/avatar.png" alt />
-      </div>
-      <div class="RoleName">{{editRoleForm.RoleName}}</div>
-      <div class="Description">{{editRoleForm.Description}}</div>
-    </div>
     <div class="middle">
       <el-table
         v-loading="loading"
@@ -22,14 +15,7 @@
         :tree-props="{children: 'Children', hasChildren: 'hasChildren'}"
       >
         <el-table-column type="index"></el-table-column>
-        <el-table-column width="80">
-          <template slot="header">
-            <el-checkbox></el-checkbox>
-          </template>
-          <template slot-scope="scope">
-            <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
-          </template>
-        </el-table-column>
+        <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="MenuName" label="菜单" width="150">
           <template slot-scope="scope">
             <i :class="scope.row.IconClass"></i>
@@ -43,31 +29,47 @@
   </div>
 </template>
 <script>
-import { getRole, getAllMenu } from '@/api/role.js'
+import { getAllMenu } from '@/api/role.js'
 export default {
   data() {
     return {
-      editRoleForm: [],
       menuRoleData: [],
-      loading: true
+      loading: true,
+      checkedRows: []
     }
   },
   methods: {
-    accept(id) {
-      getRole(id).then(res => {
-        if (res.data.code !== 0) {
-          return this.$message.error('角色信息查询失败')
+    toggleSelection(rows) {
+      this.$nextTick(function() {
+        if (rows) {
+          rows.forEach(row => {
+            console.log(row)
+            this.$refs.multipleTable.toggleRowSelection(row)
+          })
+        } else {
+          this.$refs.multipleTable.clearSelection()
         }
-        this.editRoleForm = res.data.data
-        this.loading = false
       })
+    },
+    accept(id) {
       getAllMenu(id).then(result => {
         if (result.data.code !== 0) {
           return this.$message.error('菜单列表查询失败')
         }
         this.menuRoleData = result.data.data
         this.loading = false
+        this.menuRoleData.forEach(item => {
+          if (item.IsVisible === '1') {
+            this.checkedRows.push(item)
+          }
+        })
       })
+    }
+  },
+  watch: {
+    huxing() {
+      // 接收父组件传来的参数名
+      this.toggleSelection(this.checkedRows)
     }
   }
 }

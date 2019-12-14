@@ -34,49 +34,25 @@
     </el-table>
     <!-- 编辑权限对话框 -->
     <el-dialog title="角色授限" :visible.sync="editRoleDialogVisible" width="50%">
+      <div class="top" :model="editRoleForm">
+        <div class="avatar">
+          <img src="../../../../assets/avatar.png" alt />
+        </div>
+        <div class="RoleName">{{editRoleForm.RoleName}}</div>
+        <div class="Description">{{editRoleForm.Description}}</div>
+      </div>
       <el-tabs type="border-card">
         <!-- 菜单权限 -->
         <el-tab-pane>
           <span slot="label">菜单权限</span>
           <!-- 菜单权限的子组件 -->
-          <menu-limit ref="getCardId" />
+          <menu-limit ref="getCardId"/>
         </el-tab-pane>
         <!-- 按钮权限 -->
         <el-tab-pane>
           <span slot="label">按钮权限</span>
-          <el-table
-            :data="menuRoleData"
-            style="width: 100%"
-            height="500px"
-            row-key="MenuCode"
-            default-expand-all
-            border
-          >
-            <el-table-column type="index"></el-table-column>
-            <el-table-column fixed prop="MenuName" label="菜单" width="150">
-              <template slot-scope="scope">
-                <i :class="scope.row.IconClass"></i>
-                <span style="margin-left: 10px">{{ scope.row.MenuName }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column fixed prop="name" label="全选" width="70">
-              <template slot="header">
-                <el-checkbox>全选</el-checkbox>
-              </template>
-              <template slot-scope="scope">
-                <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
-              </template>
-            </el-table-column>
-            <el-table-column width="55" v-for="(item,i) in headData" :key="i">
-              <template slot="header">
-                <i class></i>
-                <span>{{item}}</span>
-              </template>
-              <template slot-scope="scope">
-                <el-checkbox :checked="scope.row.IsVisible==='1'?true:false"></el-checkbox>
-              </template>
-            </el-table-column>
-          </el-table>
+          <!-- 按钮权限的子组件 -->
+          <btn-permission />
         </el-tab-pane>
       </el-tabs>
       <span slot="footer" class="dialog-footer">
@@ -87,32 +63,19 @@
   </div>
 </template>
 <script>
-import { getRoles } from '@/api/role.js'
+import { getRoles, getRole } from '@/api/role.js'
 import MenuLimit from './component/MenuLimit'
+import BtnPermission from './component/BtnPermission'
 export default {
   components: {
-    MenuLimit
+    MenuLimit,
+    BtnPermission
   },
   data() {
     return {
       roleList: [],
       editRoleDialogVisible: false,
-      headData: [
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增',
-        '新增'
-      ]
+      editRoleForm: []
     }
   },
   created() {
@@ -121,6 +84,12 @@ export default {
   methods: {
     showEditRoleDialog(id) {
       this.editRoleDialogVisible = true
+      getRole(id).then(res => {
+        if (res.data.code !== 0) {
+          return this.$message.error('角色信息查询失败')
+        }
+        this.editRoleForm = res.data.data
+      })
       // 在这里做初始化后就立马执行了下一句调用子组件的方法,可能他还没有初始化完成,所以出现了undefined的异常,稍作了一下延时处理
       setTimeout(() => {
         this.$refs.getCardId.accept(id)
