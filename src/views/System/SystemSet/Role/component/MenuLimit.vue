@@ -43,7 +43,6 @@ export default {
       this.$nextTick(function() {
         if (rows) {
           rows.forEach(row => {
-            console.log(row)
             this.$refs.multipleTable.toggleRowSelection(row)
           })
         } else {
@@ -64,12 +63,6 @@ export default {
           }
         })
       })
-    }
-  },
-  watch: {
-    huxing() {
-      // 接收父组件传来的参数名
-      this.toggleSelection(this.checkedRows)
     }
   }
 }

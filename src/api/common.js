@@ -1,5 +1,5 @@
 import axios from 'axios'
-import qs from 'qs'
+// import qs from 'qs'
 import store from './store'
 
 const Axios = axios.create({
@@ -12,9 +12,9 @@ Axios.interceptors.request.use(
     // "user/signin",
     // {uname:dingding , upwd:123456}
     // )
-    if (config.method === 'post') {
-      config.data = qs.stringify(config.data)
-    }
+    // if (config.method === 'post') {
+    //   config.data = qs.stringify(config.data)
+    // }
     if (localStorage.getItem('token')) {
       config.headers.token = localStorage.getItem('token')
     }

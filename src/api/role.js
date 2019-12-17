@@ -21,3 +21,10 @@ export function getAllMenu() {
     method: 'get'
   })
 }
+// 删除角色信息
+export function deleteRole(id) {
+  return Axios({
+    url: `/api/Role/Delete/${id}`,
+    method: 'delete'
+  })
+}

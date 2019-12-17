@@ -2,13 +2,7 @@
   <div>
     <!-- 标签区域 -->
     <div class="tag">
-      <el-tag
-        size="medium"
-        v-for="tag in tags"
-        :color="color"
-        :key="tag.name"
-        :type="tag.type"
-      >
+      <el-tag size="medium" v-for="tag in tags" :color="color" :key="tag.name" :type="tag.type">
         <i :class="tag.iconClass"></i>
         {{tag.name}}
       </el-tag>
@@ -49,50 +43,19 @@
   </div>
 </template>
 <script>
+import { getAnnualplanList } from '@/api/manage.js'
 export default {
   data() {
     return {
+      // 获取参数对象
+      queryInfo: {
+        pageIndex: 1,
+        pageSize: 10
+      },
       input: '',
       value: '',
       color: '',
-      tableData: [
-        {
-          planId: 'LH201505120001',
-          planName: '5月入库计划',
-          yearChange: '2015',
-          statusCheck: '审核通过',
-          pepleCheck: '管理员',
-          timeCheck: '2012-05-12 08:43:43',
-          remark: ''
-        },
-        {
-          planId: 'LH201905120001',
-          planName: '5月入库计划',
-          yearChange: '2016',
-          statusCheck: '审核通过',
-          pepleCheck: '管理员',
-          timeCheck: '2014-05-12 08:43:43',
-          remark: ''
-        },
-        {
-          planId: 'LH201605120001',
-          planName: '5月入库计划',
-          yearChange: '2012',
-          statusCheck: '审核通过',
-          pepleCheck: '管理员',
-          timeCheck: '2019-05-12 08:43:43',
-          remark: ''
-        },
-        {
-          planId: 'LH201705120001',
-          planName: '5月入库计划',
-          yearChange: '2019',
-          statusCheck: '审核通过',
-          pepleCheck: '管理员',
-          timeCheck: '2015-05-12 08:43:43',
-          remark: ''
-        }
-      ],
+      tableData: [],
       tags: [
         { name: '新增', type: '', iconClass: 'el-icon-plus' },
         { name: '编辑', type: 'success', iconClass: 'el-icon-edit-outline' },
@@ -102,9 +65,17 @@ export default {
       ]
     }
   },
-  methods: {}
+  created() {
+    this.init()
+  },
+  methods: {
+    async init() {
+      const { data: res } = await getAnnualplanList(this.queryInfo)
+      console.log(res)
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
-@import '../css/planManage.scss'
+@import '../css/planManage.scss';
 </style>

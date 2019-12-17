@@ -196,32 +196,36 @@ export default {
     },
     // 点击删除按钮
     deleteForm(id) {
-      this.$confirm(`确定删除选中信息?`, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          DeleteBarn(id).then(res => {
-            if (res.data.code !== 0) {
+      if (id) {
+        this.$confirm(`确定删除选中信息?`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+          .then(() => {
+            DeleteBarn(id).then(res => {
+              if (res.data.code !== 0) {
+                this.$message({
+                  type: 'info',
+                  message: '删除失败!'
+                })
+              }
               this.$message({
-                type: 'info',
-                message: '删除失败!'
+                type: 'success',
+                message: '删除成功!'
               })
-            }
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
+              this.init()
             })
-            this.init()
           })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
           })
-        })
+      } else {
+        this.$message('请选择一条信息')
+      }
     },
     // 点击编辑按钮
     bjGsForm(id) {

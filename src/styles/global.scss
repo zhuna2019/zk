@@ -72,4 +72,11 @@ html, body, #app {
 .el-tabs__content{
   padding:0 !important
 }
-
+.el-dialog{
+  width:800px;
+  border-radius: 5px;
+  background-color:#012044;
+}
+.el-dialog__title{
+  color:#eee !important;
+}

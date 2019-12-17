@@ -34,7 +34,8 @@ import {
   ColorPicker,
   Tooltip,
   Avatar,
-  Loading
+  Loading,
+  Switch
 } from 'element-ui'
 Vue.use(Button)
 Vue.use(Form)
@@ -69,5 +70,6 @@ Vue.use(Tooltip)
 Vue.use(Avatar)
 Vue.use(Tree)
 Vue.use(Loading)
+Vue.use(Switch)
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm

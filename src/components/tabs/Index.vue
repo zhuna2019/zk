@@ -58,7 +58,7 @@ export default {
       this.$store.commit('deductTab', targetName)
       let deductIndex = this.openedTab.indexOf(targetName)
       this.openedTab.splice(deductIndex, 1)
-      // this.$router.push(activeName)
+      this.$router.push(activeName)
       this.editableTabsValue = activeName
       this.editableTabs = tabs.filter(tab => tab.name !== targetName)
       if (this.openedTab.length === 0) {
