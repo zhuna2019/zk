@@ -1,22 +1,22 @@
 <template>
-  <div class="user_manager">
-    <div class="left">
+  <div class="dictionary">
+    <div class="dictionary_category">
       <!-- 字典类别子组件 -->
-      <combination />
+      <dictionary-category />
     </div>
-    <div class="right">
+    <div class="operation">
       <!-- 右侧表格内容区子组件 -->
-      <user-content />
+      <dictionary-content />
     </div>
   </div>
 </template>
 <script>
-import Combination from './components/Combination'
-import UserContent from './components/UserContent'
+import DictionaryCategory from './components/DictionaryCategory'
+import DictionaryContent from './components/DictionaryContent.vue'
 export default {
   components: {
-    Combination,
-    UserContent
+    DictionaryCategory,
+    DictionaryContent
   },
   data() {
     return {}
@@ -24,20 +24,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.user_manager {
+.dictionary {
   width: 100%;
   height: 93%;
   display: flex;
   justify-content: space-between;
   padding: 5px;
-  .left {
+  .dictionary_category {
     width: 14%;
     height: 100%;
     overflow: hidden;
     border: 1px solid #034b8c;
     padding: 5px;
   }
-  .right {
+  .operation {
     width: 85%;
     height: 100%;
     border: 1px solid #034b8c;

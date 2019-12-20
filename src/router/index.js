@@ -11,6 +11,9 @@ import sysBarnInfo from '../views/System/BasicSet/sysBarnInfo/Index.vue'
 import sysUser from '../views/System/SystemSet/User/Index.vue'
 import sysRole from '../views/System/SystemSet/Role/Index.vue'
 import menuNavigation from '../views/System/SystemSet/MenuNavigation/Index.vue'
+import Dictionary from '../views/System/BasicSet/Dictionary/Index.vue'
+import ModulePage from '../views/System/SystemSet/ModulePaged/Index.vue'
+import BarnGrain from '../views/ReportForm/BarnGrain/Index.vue'
 Vue.use(VueRouter)
 const routes = [
   { path: '/' },
@@ -28,7 +31,10 @@ const routes = [
       { path: '/sys/sys_BarnInfo/Index', component: sysBarnInfo, name: 'sysBarnInfo' },
       { path: '/sys/user', component: sysUser, name: 'sysUser' },
       { path: '/sys/role', component: sysRole, name: 'sysRole' },
-      { path: '/sys/menu', component: menuNavigation, name: 'menuNavigation' }
+      { path: '/sys/menu', component: menuNavigation, name: 'menuNavigation' },
+      { path: '/sys/sys_Dictionary/Index', component: Dictionary, name: 'Dictionary' },
+      { path: '/sys/module/index', component: ModulePage, name: 'ModulePage' },
+      { path: '/Grain/ReportNew/BarnGrain', component: BarnGrain, name: 'BarnGrain' }
     ]
   }
 ]

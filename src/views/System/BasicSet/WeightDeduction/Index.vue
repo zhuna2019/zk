@@ -1,59 +1,39 @@
 <template>
-  <div class="sysUser">
-    <div class="containers">
-      <div class="organization">
-        <div class="dropdown-menu user">
-          <el-dropdown split-button trigger="click" :hide-on-click="false">
-            <i></i>
-            <span>组织架构</span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>副主任</el-dropdown-item>
-              <el-dropdown-item>综合组长</el-dropdown-item>
-              <el-dropdown-item>保管组长</el-dropdown-item>
-              <el-dropdown-item>保管员</el-dropdown-item>
-              <el-dropdown-item>主任</el-dropdown-item>
-              <el-dropdown-item>司磅员</el-dropdown-item>
-              <el-dropdown-item>机电员</el-dropdown-item>
-              <el-dropdown-item>后勤</el-dropdown-item>
-              <el-dropdown-item>信息管理员</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </div>
-      </div>
-      <div class="content">
-        <!-- 操作区 -->
-        <div class="sort">
-          <el-button size="mini" round type="success" class="iconfont icon-xinzeng">新增</el-button>
-          <el-button size="mini" round type="warning" class="iconfont icon-bianji">编辑</el-button>
-          <el-button size="mini" round type="danger" class="iconfont icon-shanchu">删除</el-button>
-          <el-button size="mini" round type="info" class="iconfont icon-shuaxin">刷新</el-button>
-          <el-button size="mini" round type="primary" plain class="iconfont icon-daochu">保存</el-button>
-          <el-button size="mini" round type="primary" plain class="iconfont icon-daoru">重置密码</el-button>
-        </div>
-        <!-- 表格区域 -->
-        <el-table stripe border highlight-current-row>
-          <el-table-column type="index"></el-table-column>
-          <el-table-column prop="planId" label="用户编码" sortable></el-table-column>
-          <el-table-column prop="ProjectCode" label="员工"></el-table-column>
-          <el-table-column prop="Cfmc" label="描述说明"></el-table-column>
-          <el-table-column prop="Cflx" label="排序码" sortable></el-table-column>
-          <el-table-column prop="Cfjg" label="是否启用"></el-table-column>
-          <el-table-column prop="Jzlx" label="登陆次数"></el-table-column>
-          <el-table-column prop="Cfcd" label="最后登陆时间"></el-table-column>
-          <el-table-column prop="Cfkd" label="操作"></el-table-column>
-        </el-table>
+  <div class="weight_deduction">
+    <!-- 操作区 -->
+    <div class="sort">
+      <el-button size="mini" round type="success" class="iconfont icon-xinzeng">新增</el-button>
+      <el-button size="mini" round type="warning" class="iconfont icon-bianji">编辑</el-button>
+      <el-button size="mini" round type="danger" class="iconfont icon-shanchu">删除</el-button>
+      <el-button size="mini" round type="info" class="iconfont icon-shuaxin">刷新</el-button>
+      <el-button size="mini" round type="primary" plain class="iconfont icon-daochu">保存</el-button>
+      <el-button size="mini" round type="primary" plain class="iconfont icon-daoru">重置密码</el-button>
+    </div>
+    <!-- 表格区域 -->
+    <div class="table">
+      <el-table stripe border highlight-current-row height="90%">
+        <el-table-column type="index"></el-table-column>
+        <el-table-column prop="planId" label="用户编码" sortable></el-table-column>
+        <el-table-column prop="ProjectCode" label="员工"></el-table-column>
+        <el-table-column prop="Cfmc" label="描述说明"></el-table-column>
+        <el-table-column prop="Cflx" label="排序码" sortable></el-table-column>
+        <el-table-column prop="Cfjg" label="是否启用"></el-table-column>
+        <el-table-column prop="Jzlx" label="登陆次数"></el-table-column>
+        <el-table-column prop="Cfcd" label="最后登陆时间"></el-table-column>
+        <el-table-column prop="Cfkd" label="操作"></el-table-column>
         <!-- 分页区域 -->
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="queryInfo.pageIndex"
-          :page-sizes="[1, 2, 5, 10]"
-          :page-size="queryInfo.pageSize"
-          layout="total, sizes, prev, pager, next"
-          :total="total"
-          class="pagination"
-        ></el-pagination>
-      </div>
+      </el-table>
+      <el-pagination
+        height="5%"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageIndex"
+        :page-sizes="[1, 2, 5, 10]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next"
+        :total="total"
+        class="pagination"
+      ></el-pagination>
     </div>
   </div>
 </template>
@@ -85,57 +65,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '@/styles/variables.scss';
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-.sysUser {
+.weight_deduction {
   width: 100%;
-  height: 78vh;
-  display: flex;
+  height: 93%;
+  display:flex;
   flex-direction: column;
   justify-content: space-between;
-  .containers {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    .organization {
-      width: 130px;
-      height: 95%;
-      border: 1px solid #034b8c;
-    }
-    .content {
-      flex: 1;
-      height: 100%;
-      padding: 3px;
-      border: 1px solid #034b8c;
-      margin-left: 5px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      .sort {
-        width: 100%;
-        height: 5%;
-        margin: 5px 0 0 5px;
-      }
-      .el-table {
-        width: 100%;
-        height: 88%;
-      }
-      .el-pagination {
-        width: 100%;
-        height: 7%;
-      }
-    }
-  }
-}
-.pagination {
-  width: 100%;
-  height: 5%;
-}
-.el-dropdown-menu {
-  width: 120px;
-  background-color: #eee;
 }
 </style>

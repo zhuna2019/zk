@@ -25,6 +25,67 @@
       >删除</el-button>
       <el-button size="mini" round type="info" class="iconfont icon-shuaxin" @click="freshForm">刷新</el-button>
     </div>
+    <!-- 表格区域 -->
+    <div class="table">
+      <el-table
+        :data="roleList"
+        highlight-current-row
+        border
+        stripe
+        height="90%"
+        @current-change="handleCurrentChange"
+        ref="demoTable"
+      >
+        <el-table-column type="index"></el-table-column>
+        <el-table-column prop="RoleName" label="角色名称" width="150">
+          <template slot-scope="scope">
+            <span>{{scope.row.RoleName}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="RoleCode" label="角色编码" width="150" sortable>
+          <template slot-scope="scope">
+            <span>{{scope.row.RoleCode}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="RoleSeq" label="排序" width="100" sortable>
+          <template slot-scope="scope">
+            <span>{{scope.row.RoleSeq}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column prop="Description" label="描述" width="180">
+          <template slot-scope="scope">
+            <span>{{scope.row.Description}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="280">
+          <template slot-scope="scope">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="编辑权限"
+              placement="top"
+              :enterable="false"
+            >
+              <el-button
+                type="primary"
+                icon="el-icon-edit"
+                size="mini"
+                @click="showEditRoleDialog(scope.row.RoleCode)"
+              ></el-button>
+            </el-tooltip>
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="管理成员"
+              placement="top"
+              :enterable="false"
+            >
+              <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
+            </el-tooltip>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
     <!-- 模态框区域 -->
     <el-dialog
       :title="title"
@@ -58,53 +119,6 @@
         <el-button type="primary" @click="saveAddForm">保存</el-button>
       </div>
     </el-dialog>
-    <!-- 表格区域 -->
-    <el-table
-      :data="roleList"
-      highlight-current-row
-      border
-      stripe
-      height="90%"
-      @current-change="handleCurrentChange"
-      ref="demoTable"
-    >
-      <el-table-column type="index"></el-table-column>
-      <el-table-column prop="RoleName" label="角色名称" width="150">
-        <template slot-scope="scope">
-          <span>{{scope.row.RoleName}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="RoleCode" label="角色编码" width="150" sortable>
-        <template slot-scope="scope">
-          <span>{{scope.row.RoleCode}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="RoleSeq" label="排序" width="100" sortable>
-        <template slot-scope="scope">
-          <span>{{scope.row.RoleSeq}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="Description" label="描述" width="180">
-        <template slot-scope="scope">
-          <span>{{scope.row.Description}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" width="280">
-        <template slot-scope="scope">
-          <el-tooltip class="item" effect="dark" content="编辑权限" placement="top" :enterable="false">
-            <el-button
-              type="primary"
-              icon="el-icon-edit"
-              size="mini"
-              @click="showEditRoleDialog(scope.row.RoleCode)"
-            ></el-button>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="管理成员" placement="top" :enterable="false">
-            <el-button type="warning" icon="el-icon-setting" size="mini"></el-button>
-          </el-tooltip>
-        </template>
-      </el-table-column>
-    </el-table>
     <!-- 编辑权限对话框 -->
     <el-dialog title="角色授限" :visible.sync="editRoleDialogVisible" width="50%">
       <div class="top" :model="editRoleForm">
@@ -286,11 +300,9 @@ export default {
 .role {
   width: 100%;
   height: 93%;
-  padding: 5px;
-  .sort {
-    width: 100%;
-    height: 5%;
-  }
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .role_content {
   height: 460px;

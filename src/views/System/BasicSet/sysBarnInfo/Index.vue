@@ -93,43 +93,45 @@
       </div>
     </el-dialog>
     <!-- 表格区域 -->
-    <el-table
-      :data="storehouselist"
-      stripe
-      border
-      highlight-current-row
-      height="550px"
-      @row-click="getID"
-    >
-      <el-table-column type="index"></el-table-column>
-      <el-table-column prop="planId" label="所属粮库" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="ProjectCode" label="库房编码" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Cfmc" label="库房名称" show-overflow-tooltip sortable></el-table-column>
-      <el-table-column prop="Cflx" label="库房类型"></el-table-column>
-      <el-table-column prop="Cfjg" label="库房结构"></el-table-column>
-      <el-table-column prop="Jzlx" label="建筑类型"></el-table-column>
-      <el-table-column prop="Cfcd" label="库房长度(m)" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Cfkd" label="库房宽度(m)" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Cfgd" label="库房高度(m)" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Capacity" label="设计仓容(kg)" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="RealCapacity" label="实际仓容(kg)" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Phone" label="联系电话" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Longitude" label="经度" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Latitude" label="纬度" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Qyrq" label="启用日期" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="Sort" label="排序" show-overflow-tooltip></el-table-column>
-    </el-table>
-    <!-- 分页区域 -->
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="queryInfo.pageIndex"
-      :page-sizes="[1, 2, 5, 10]"
-      :page-size="queryInfo.pageSize"
-      layout="total, sizes, prev, pager, next"
-      :total="total"
-      class="pagination"
-    ></el-pagination>
+    <div class="table">
+      <el-table
+        :data="storehouselist"
+        stripe
+        border
+        highlight-current-row
+        height="90%"
+        @row-click="getID"
+      >
+        <el-table-column type="index"></el-table-column>
+        <el-table-column prop="planId" label="所属粮库" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="ProjectCode" label="库房编码" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Cfmc" label="库房名称" show-overflow-tooltip sortable></el-table-column>
+        <el-table-column prop="Cflx" label="库房类型"></el-table-column>
+        <el-table-column prop="Cfjg" label="库房结构"></el-table-column>
+        <el-table-column prop="Jzlx" label="建筑类型"></el-table-column>
+        <el-table-column prop="Cfcd" label="库房长度(m)" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Cfkd" label="库房宽度(m)" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Cfgd" label="库房高度(m)" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Capacity" label="设计仓容(kg)" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="RealCapacity" label="实际仓容(kg)" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Phone" label="联系电话" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Longitude" label="经度" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Latitude" label="纬度" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Qyrq" label="启用日期" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="Sort" label="排序" show-overflow-tooltip></el-table-column>
+      </el-table>
+      <!-- 分页区域 -->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageIndex"
+        :page-sizes="[1, 2, 5, 10]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next"
+        :total="total"
+        class="pagination"
+      ></el-pagination>
+    </div>
   </div>
 </template>
 <script>
@@ -145,7 +147,7 @@ export default {
       // 获取参数对象
       queryInfo: {
         pageIndex: 1,
-        pageSize: 3
+        pageSize: 9
       },
       storehouselist: [],
       total: 0,
@@ -342,31 +344,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .sysBarnInfo {
+  width: 100%;
   height: 93%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .sort {
-    width: 100%;
-    height: 5%;
-    padding: 10px;
-    .el-button {
-      font-size: 12px !important;
-      border: none;
-    }
-    .el-button:hover {
-      background-color: #0dc6f5;
-      color: #000;
-    }
-  }
-}
-.el-table {
-  width: 100%;
-  height: 90%;
-}
-.pagination {
-  width: 100%;
-  height: 5%;
 }
 .dialogAdd {
   display: flex;

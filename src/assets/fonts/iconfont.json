@@ -27,6 +27,13 @@
       "unicode_decimal": 59224
     },
     {
+      "icon_id": "4249768",
+      "name": "文件夹",
+      "font_class": "wenjianjia",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
       "icon_id": "5383810",
       "name": "系统",
       "font_class": "huabanfuben",
@@ -88,6 +95,13 @@
       "font_class": "shuaxin",
       "unicode": "e616",
       "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "8289050",
+      "name": "字典",
+      "font_class": "zidian",
+      "unicode": "e875",
+      "unicode_decimal": 59509
     },
     {
       "icon_id": "8319353",

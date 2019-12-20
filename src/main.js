@@ -13,6 +13,9 @@ const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
+// 建立中转站，实现组件与组件之间的传值
+let bus = new Vue()
+Vue.prototype.bus = bus
 Vue.prototype.axios = axios
 Vue.config.productionTip = false
 new Vue({
