@@ -116,8 +116,11 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100% !important;
+    height: 70% !important;
     padding: 0 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     .el-input {
       width: 100%;
     }

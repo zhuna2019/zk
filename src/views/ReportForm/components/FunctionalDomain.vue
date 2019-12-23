@@ -1,10 +1,17 @@
-<template><div>111</div></template>
+<template>
+  <div class="demo">
+    <print-function />
+  </div>
+</template>
 <script>
+import PrintFunction from './printFunction'
 export default {
+  components: {
+    PrintFunction
+  },
   data() {
     return {}
-  }
+  },
+  methods: {}
 }
 </script>
-<style lang="scss" scoped>
-</style>

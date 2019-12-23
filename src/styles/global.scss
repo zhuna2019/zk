@@ -12,7 +12,7 @@ html, body, #app {
     outline: none !important;
 }
 .el-button{
-  padding:0 10px !important;
+  padding:5px 10px !important;
 }
 .el-tag + .el-tag {
     margin-left: 10px;
@@ -126,8 +126,8 @@ html, body, #app {
   padding: 5px;
 }
 .el-input__inner{
-  height:20px!important;
-  line-height:20px!important;
+  height:20px;
+  line-height:20px;
   font-size:12px;
 }
 .el-input__icon{

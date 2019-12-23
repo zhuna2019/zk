@@ -9,18 +9,45 @@
         </div>
         <div class="input">
           <span>至</span>
-          <el-date-picker v-model="value2" type="date" placeholder="选择日期"></el-date-picker>
+          <el-date-picker class="input_inner" v-model="value2" type="date" placeholder="选择日期"></el-date-picker>
         </div>
       </div>
       <div class="planBtn">
-        <el-button type="primary" plain>查询</el-button>
+        <el-button type="primary" plain @click="printBtn">查询</el-button>
         <el-button type="primary" plain>清空</el-button>
       </div>
     </div>
     <div class="top_menu">
       <functional-domaind />
     </div>
-    <div class="content"></div>
+    <div class="content">
+      <form id="form1" v-show="isshow">
+        <table
+          width="560"
+          height="320"
+        >
+          <tr>
+            <td width="100%" height="240">
+              <p align="center">
+                <font face="隶书" size="5" style="letter-spacing: 10px">郭德强</font>
+              </p>
+              <p align="center">
+                <font face="宋体" size="3">科学家</font>
+              </p>
+              <p align="left">
+                <font face="宋体" size="3">地址：中国北京社会科学院附近东大街西胡同</font>
+              </p>
+              <p align="left">
+                <font face="宋体" size="3">电话：010-88811888</font>
+              </p>
+              <p>
+                <br />
+              </p>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
   </div>
 </template>
 <script>
@@ -33,21 +60,22 @@ export default {
   data() {
     return {
       value1: '',
-      value2: ''
+      value2: '',
+      isshow: true
+    }
+  },
+  methods: {
+    printBtn() {
+      window.print()
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.top {
-  width: 100%;
-  height: 5%;
-  background-color: #034b8c;
-}
 .top_menu {
   width: 100%;
-  height: 3%;
-  background-color: #7ab6eb;
+  height: 5%;
+  background-color: #aaa;
 }
 .content {
   width: 100%;
@@ -76,6 +104,9 @@ export default {
       width: 20%;
       color: red;
       overflow: hidden;
+    }
+    .input_inner {
+      height: 20px !important;
     }
   }
 }
