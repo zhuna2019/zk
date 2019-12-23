@@ -22,30 +22,26 @@
     </div>
     <div class="content">
       <form id="form1" v-show="isshow">
-        <table
-          width="560"
-          height="320"
-        >
-          <tr>
-            <td width="100%" height="240">
-              <p align="center">
-                <font face="隶书" size="5" style="letter-spacing: 10px">郭德强</font>
-              </p>
-              <p align="center">
-                <font face="宋体" size="3">科学家</font>
-              </p>
-              <p align="left">
-                <font face="宋体" size="3">地址：中国北京社会科学院附近东大街西胡同</font>
-              </p>
-              <p align="left">
-                <font face="宋体" size="3">电话：010-88811888</font>
-              </p>
-              <p>
-                <br />
-              </p>
-            </td>
-          </tr>
-        </table>
+       <el-table
+            class="table"
+            :data="tableData"
+            border
+            style="width: 100%">
+            <el-table-column
+            prop="date"
+            label="日期"
+            width="180">
+            </el-table-column>
+            <el-table-column
+            prop="name"
+            label="姓名"
+            width="180">
+            </el-table-column>
+            <el-table-column
+            prop="address"
+            label="地址">
+            </el-table-column>
+        </el-table>
       </form>
     </div>
   </div>
@@ -61,7 +57,24 @@ export default {
     return {
       value1: '',
       value2: '',
-      isshow: true
+      isshow: true,
+       tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄'
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }]
     }
   },
   methods: {
@@ -76,6 +89,7 @@ export default {
   width: 100%;
   height: 5%;
   background-color: #aaa;
+  line-height: 25px;
 }
 .content {
   width: 100%;
@@ -84,10 +98,11 @@ export default {
 }
 .top {
   width: 100%;
-  height: 5%;
+  height: 6%;
   background-color: #034b8c;
   display: flex;
   padding: 3px;
+  line-height: 28px;
 }
 .plan {
   width: 70%;
